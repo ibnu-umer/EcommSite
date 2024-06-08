@@ -18,12 +18,13 @@ from django.contrib import admin
 from django.urls import path, include
 from . import settings
 from django.conf.urls import static
-from products import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("products.urls")),
-    path("", views.homePage, name="homePage")
+    path("", include("customers.urls")),
+    path("", include("orders.urls")),
+    path("", include("themes.urls"))
 ]
 
 #urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
