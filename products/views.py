@@ -4,10 +4,16 @@ from django.core.paginator import Paginator
 
 # Create your views here.
 def homePage(req):
-    return render(req, "home.html")
+    featured_products=Products.objects.order_by("-priority")[:4]
+    latest_products=Products.objects.order_by("-id")[:4]
+    context={
+        "featured_products": featured_products,
+        "latest_products": latest_products
+    }
+    return render(req, "home.html", context)
 
 def products(req):
-    products=Products.objects.all() # fetchs all data from database
+    products=Products.objects.order_by("-priority") # fetchs all data from database
     product_paginator=Paginator(products, 2) # ( the list of datas, the size of data in a page)
     page=1
     if req.GET:
@@ -15,5 +21,7 @@ def products(req):
     products=product_paginator.get_page(page) # getting the first page from the pages
     return render(req, "products.html", {"products": products})
 
-def show_product(req):
-    return render(req, "product_page.html")
+def show_product(req, pk):
+    product=Products.objects.get(pk=pk)
+    context={"product":product}
+    return render(req, "product_page.html", context)

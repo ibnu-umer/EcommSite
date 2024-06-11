@@ -17,19 +17,29 @@
                             <span onclick="register()">Register</span>
                             <hr id="Indicator">
                         </div>
-                        <form id="LoginForm">
-                            <input type="text" placeholder="Username">
-                            <input type="password" placeholder="Password">
-                            <button type="submit" class="btn">Login</button>
+                        <form id="LoginForm" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="text" name="username" placeholder="Username">
+                            <input type="password" name="password" placeholder="Password">
+                            <button type="submit" name="login" class="btn">Login</button>
                             <a href="">Forget Password</a>
                         </form>
 
-                        <form id="RegForm">
-                            <input type="text" placeholder="Username">
-                            <input type="email" placeholder="Email">
-                            <input type="password" placeholder="Password">
-                            <button type="submit" class="btn">Register</button>
+                        <form id="RegForm" enctype="multipart/form-data" method="post">
+                            {% csrf_token %}
+                            <input type="text" name="username" required placeholder="Username">
+                            <input type="email" name="email" required placeholder="Email">
+                            <input type="password" name="password" required placeholder="Password">
+                            <input type="phone" name="phone" required placeholder="Phone">
+                            <button type="submit" name="register" class="btn">Register</button>
                         </form>
+                        {% if messages %}
+                        <div>
+                            {% for msg in messages %}
+                            <p>{{ msg }}</p>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -67,6 +77,16 @@
 
         }
     </script>
+
+{% if register %}
+    <script>
+        register()
+    </script>
+{% else %}
+    <script>
+        login()
+    </script>
+{% endif %}
 
 
 {% endblock %}
