@@ -26,4 +26,5 @@ class Order(models.Model):
 class OrderedItem(models.Model):
     product=models.ForeignKey(Products, related_name="added_to_cart", on_delete=models.SET_NULL, null=True)
     quantity=models.IntegerField(default=1)
+    size=models.CharField(default="XL")
     owner=models.ForeignKey(Order, on_delete=models.CASCADE, related_name="added_items")
