@@ -14,6 +14,11 @@ body{
     align-items: center;
     padding: 20px;
 }
+.smaller-text{
+    font-family: 'Arial';
+    -webkit-text-size-adjust: none;
+    font-size: 11px
+  }
 
 nav{
     flex: 1;
@@ -106,6 +111,13 @@ p{
     
 }
 .title{
+    text-align: center;
+    margin: 0 auto 80px;
+    position: relative;
+    line-height: 60px;
+    color: #555;
+}
+.empty-cart-title{
     text-align: center;
     margin: 0 auto 80px;
     position: relative;
@@ -292,7 +304,7 @@ select:focus{
     padding: 0;
 }
 .single-product .col-2{
-    padding: 20px;
+    padding: 40px;
 }
 .single-product h4{
     margin: 20px 0;
@@ -389,7 +401,7 @@ th:last-child{
 .form-container{
     background: #fff;
     width: 300px;
-    height: 400px;
+    height: 450px;
     position: relative;
     text-align: center;
     padding: 20px 0;
@@ -423,7 +435,7 @@ form input{
     border: 1px solid #ccc;
 }
 form .btn{
-    width: 100%;
+    width: fit-content;
     border: none;
     cursor: pointer;
     margin: 10px 0;

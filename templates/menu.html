@@ -6,6 +6,13 @@
     </div>
     <nav>
         <ul id="MenuItems">
+            <!-- if logged in -->
+            {% if user.is_authenticated %} 
+            <!-- if username provided -->
+            {% if username %}
+            <li><b>Hello {{ username }}</b></li>
+            {% endif %}
+            {% endif %}
             <li><a href="{% url 'home' %}">Home</a></li>
             <li><a href="{% url 'products' %}">Products</a></li>
             {% if not user.is_authenticated %}

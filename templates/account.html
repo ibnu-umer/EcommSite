@@ -31,6 +31,7 @@
                             <input type="email" name="email" required placeholder="Email">
                             <input type="password" name="password" required placeholder="Password">
                             <input type="phone" name="phone" required placeholder="Phone">
+                            <input type="text" name="address" placeholder="address">
                             <button type="submit" name="register" class="btn">Register</button>
                         </form>
                         {% if messages %}
@@ -38,6 +39,11 @@
                             {% for msg in messages %}
                             <p>{{ msg }}</p>
                             {% endfor %}
+                        </div>
+                        {% endif %}
+                        {% if error_detail %}
+                        <div class="smaller-text">
+                            <small>{{ error_detail }}</small>
                         </div>
                         {% endif %}
                     </div>
