@@ -18,9 +18,13 @@ class Order(models.Model):
     
     order_status=models.IntegerField(choices=STATUS_CHOICE, default=CART_STAGE)
     owner=models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True, related_name="orders")
+    total=models.FloatField(default=0, null=False)
     delete_status=models.IntegerField(choices=DELETE_CHOICES, default=LIVE)
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
+    
+    def __str__(self) -> str:
+        return "Order-{}-{}".format(self.id, self.owner.name)
     
 
 class OrderedItem(models.Model):

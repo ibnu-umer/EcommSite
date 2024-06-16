@@ -1,0 +1,40 @@
+{% extends 'blank_layout.html' %}
+
+{% block content %}
+{% load getstatus %}
+{% load static %}
+{% if orders %}
+<div class="small-container cart-page">
+    <table>
+        <tr>
+            <th>Order_ID</th>
+            <th>Date</th>
+            <th>Total</th>
+            <th>Status</th>
+        </tr>
+
+        {% for order in orders %}
+        <tr>
+            <td>
+                <p>{{ order.id }}</p>
+            </td>
+            <td>
+                <p>{{ order.created_at }}</p>
+            </td>
+            <td>
+                {{ order.total }}
+            </td>
+            <td>
+                {% getstatus order.order_status %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% else %}
+<div class="empty-cart-title">
+<p>No Orders</p>
+<img src="{% static 'images/empty_cart_img.png' %}" class="col-2 img">
+</div>
+{% endif %}
+{% endblock content %}
